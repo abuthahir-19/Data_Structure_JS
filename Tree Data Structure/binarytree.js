@@ -45,9 +45,9 @@ function main () {
     // console.log ('Count of the leaf nodes in the tree :');
     // bst.externalNodes (root);
     // console.log (enode);
-    console.log ('Elements of the tree after deleting 90 :');
-    bst.delete (80);
-    bst.inorderTraversal (root);
+    // console.log ('Elements of the tree after deleting 90 :');
+    // bst.delete (80);
+    // bst.inorderTraversal (root);
     // bst.inorderTraversal (root);
     // console.log ('Minimum value in the tree');
     // console.log (bst.minValue (root));
