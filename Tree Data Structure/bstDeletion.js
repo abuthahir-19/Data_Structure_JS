@@ -1,4 +1,4 @@
-//JavaScript Code to implement serach operation in Binary Search Tree
+//JavaScript Code to implement Deletion in Binary Search Tree
 
 const fs = require('fs');
 
@@ -36,14 +36,11 @@ function main () {
     }
     console.log ('Elements of the tree :');
     bst.inorder (root);
-    var searchVal = +readLine ();
-    console.log ('The element to be searched is %d', searchVal);
-    console.log ('Search Result :');
-    var res = bst.searchNode (root, searchVal);
-    if (res) {
-        console.log ('Element found');
-    }
-    else console.log ('Element not Found !!');
+    var d = +readLine();
+    console.log ('The element to be deleted is %d', d);
+    bst.deleteNode (root, d);
+    console.log ('After deletion the tree elements are :');
+    bst.inorder (root);
 }
 
 class Node {
@@ -82,14 +79,44 @@ class BST {
         }
     }
 
-    searchNode (root, key) {
-        if (root === null) {
-            return null;
+    findMinNode (root) {
+        var current = root.right;
+        while (current && current.left !== null) {
+            current = current.left;
         }
-        else if (key < root.data) {
-            return this.searchNode (root.left, key);
+        return current;
+    }
+
+    deleteNode (rootNode, element) {
+        if (rootNode === null) {
+            return 'Tree Empty';
         }
-        else return root;
+        else if (element < rootNode.data) {
+            rootNode.left = this.deleteNode (rootNode.left, element);
+            return rootNode;
+        }
+        else if (element > rootNode.data) {
+            rootNode.right = this.deleteNode (rootNode.right, element);
+            return rootNode;
+        }
+        else {
+            if (rootNode.left === null && rootNode.right === null) {
+                rootNode = null;
+                return rootNode;
+            }
+            else if (rootNode.left === null) {
+                rootNode = rootNode.right;
+                return rootNode;
+            }
+            else if (rootNode.right === null) {
+                rootNode = rootNode.left;
+                return rootNode;
+            }
+            var min = this.findMinNode (rootNode);
+            rootNode.data = min.data;
+            rootNode.right = this.deleteNode (rootNode.right, min.data);
+            return rootNode;
+        }
     }
 
     inorder (rootNode) {
@@ -101,7 +128,9 @@ class BST {
     }
 }
 
+
 /**
+
 Input:
 50 70 30 60 90 20 80 65 55 25
 80
@@ -118,30 +147,8 @@ Elements of the tree :
 70
 80
 90
-The element to be searched is 80
-Search Result :
-Element found
-
-Input:
-50 70 30 60 90 20 80 65 55 25
-12
-
-Output:
-Elements of the tree :
-25
-30
-50
-55
-60
-65
-70
-80
-90
-The element to be searched is 80
-Search Result :
-Element found
-PS F:\DS Algo Using JS> node "f:\DS Algo Using JS\Tree Data Structure\search.js"
-Elements of the tree :
+The element to be deleted is 80       
+After deletion the tree elements are :
 20
 25
 30
@@ -150,9 +157,5 @@ Elements of the tree :
 60
 65
 70
-80
 90
-The element to be searched is 12
-Search Result :
-Element not Found !!
 **/

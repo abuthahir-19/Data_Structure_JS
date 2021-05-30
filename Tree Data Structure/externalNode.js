@@ -1,4 +1,4 @@
-//JavaScript Code to implement serach operation in Binary Search Tree
+//JavaScript Program to Find out the number of leaf nodes or external nodes(a node is said to be a leaf node if it has no childrens).
 
 const fs = require('fs');
 
@@ -9,6 +9,7 @@ readable.setEncoding ('utf-8');
 
 var inputString = '';
 var currentLine = 0;
+var eNode = 0;
 
 readable.on ('data', data => {
     inputString += data;
@@ -36,14 +37,9 @@ function main () {
     }
     console.log ('Elements of the tree :');
     bst.inorder (root);
-    var searchVal = +readLine ();
-    console.log ('The element to be searched is %d', searchVal);
-    console.log ('Search Result :');
-    var res = bst.searchNode (root, searchVal);
-    if (res) {
-        console.log ('Element found');
-    }
-    else console.log ('Element not Found !!');
+    bst.externalNodes (root);
+    console.log ('The total number of external nodes in the tree is :');
+    console.log (eNode);
 }
 
 class Node {
@@ -82,14 +78,12 @@ class BST {
         }
     }
 
-    searchNode (root, key) {
-        if (root === null) {
-            return null;
+    externalNodes (root) {
+        if (root !== null) {
+            if (root.left === null || root.right == null) eNode +=1;
+            if (root.left !== null) this.externalNodes (root.left);
+            if (root.right !== null) this.externalNodes (root.right);
         }
-        else if (key < root.data) {
-            return this.searchNode (root.left, key);
-        }
-        else return root;
     }
 
     inorder (rootNode) {
@@ -104,7 +98,7 @@ class BST {
 /**
 Input:
 50 70 30 60 90 20 80 65 55 25
-80
+
 
 Output:
 Elements of the tree :
@@ -118,41 +112,6 @@ Elements of the tree :
 70
 80
 90
-The element to be searched is 80
-Search Result :
-Element found
-
-Input:
-50 70 30 60 90 20 80 65 55 25
-12
-
-Output:
-Elements of the tree :
-25
-30
-50
-55
-60
-65
-70
-80
-90
-The element to be searched is 80
-Search Result :
-Element found
-PS F:\DS Algo Using JS> node "f:\DS Algo Using JS\Tree Data Structure\search.js"
-Elements of the tree :
-20
-25
-30
-50
-55
-60
-65
-70
-80
-90
-The element to be searched is 12
-Search Result :
-Element not Found !!
+The total number of external nodes in the tree is :
+7
 **/

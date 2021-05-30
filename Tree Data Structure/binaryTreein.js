@@ -1,4 +1,4 @@
-//JavaScript Code to implement serach operation in Binary Search Tree
+//JavaScript Code to implement insertion in Binary Search Tree
 
 const fs = require('fs');
 
@@ -36,14 +36,6 @@ function main () {
     }
     console.log ('Elements of the tree :');
     bst.inorder (root);
-    var searchVal = +readLine ();
-    console.log ('The element to be searched is %d', searchVal);
-    console.log ('Search Result :');
-    var res = bst.searchNode (root, searchVal);
-    if (res) {
-        console.log ('Element found');
-    }
-    else console.log ('Element not Found !!');
 }
 
 class Node {
@@ -82,16 +74,6 @@ class BST {
         }
     }
 
-    searchNode (root, key) {
-        if (root === null) {
-            return null;
-        }
-        else if (key < root.data) {
-            return this.searchNode (root.left, key);
-        }
-        else return root;
-    }
-
     inorder (rootNode) {
         if (rootNode !== null) {
             this.inorder (rootNode.left);
@@ -101,10 +83,9 @@ class BST {
     }
 }
 
-/**
-Input:
+/***
+Input :
 50 70 30 60 90 20 80 65 55 25
-80
 
 Output:
 Elements of the tree :
@@ -118,41 +99,4 @@ Elements of the tree :
 70
 80
 90
-The element to be searched is 80
-Search Result :
-Element found
-
-Input:
-50 70 30 60 90 20 80 65 55 25
-12
-
-Output:
-Elements of the tree :
-25
-30
-50
-55
-60
-65
-70
-80
-90
-The element to be searched is 80
-Search Result :
-Element found
-PS F:\DS Algo Using JS> node "f:\DS Algo Using JS\Tree Data Structure\search.js"
-Elements of the tree :
-20
-25
-30
-50
-55
-60
-65
-70
-80
-90
-The element to be searched is 12
-Search Result :
-Element not Found !!
 **/

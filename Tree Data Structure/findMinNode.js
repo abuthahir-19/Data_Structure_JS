@@ -1,4 +1,4 @@
-//JavaScript Code to implement serach operation in Binary Search Tree
+//JavaScript Code to implement Finding Minimun mode in the Binary Search Tree
 
 const fs = require('fs');
 
@@ -36,14 +36,9 @@ function main () {
     }
     console.log ('Elements of the tree :');
     bst.inorder (root);
-    var searchVal = +readLine ();
-    console.log ('The element to be searched is %d', searchVal);
-    console.log ('Search Result :');
-    var res = bst.searchNode (root, searchVal);
-    if (res) {
-        console.log ('Element found');
-    }
-    else console.log ('Element not Found !!');
+    var minNode = bst.findMinNode (root);
+    console.log ('Minimum Node in the Tree :');
+    console.log (minNode.data);
 }
 
 class Node {
@@ -82,14 +77,12 @@ class BST {
         }
     }
 
-    searchNode (root, key) {
-        if (root === null) {
-            return null;
+    findMinNode (root) {
+        var current = root.left;
+        while (current && current.left !== null) {
+            current = current.left;
         }
-        else if (key < root.data) {
-            return this.searchNode (root.left, key);
-        }
-        else return root;
+        return current;
     }
 
     inorder (rootNode) {
@@ -118,41 +111,6 @@ Elements of the tree :
 70
 80
 90
-The element to be searched is 80
-Search Result :
-Element found
-
-Input:
-50 70 30 60 90 20 80 65 55 25
-12
-
-Output:
-Elements of the tree :
-25
-30
-50
-55
-60
-65
-70
-80
-90
-The element to be searched is 80
-Search Result :
-Element found
-PS F:\DS Algo Using JS> node "f:\DS Algo Using JS\Tree Data Structure\search.js"
-Elements of the tree :
+Minimum Node in the Tree :
 20
-25
-30
-50
-55
-60
-65
-70
-80
-90
-The element to be searched is 12
-Search Result :
-Element not Found !!
 **/

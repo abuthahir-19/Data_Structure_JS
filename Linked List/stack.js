@@ -7,8 +7,8 @@ readable.setEncoding ('utf-8');
 let inputString = '';
 let currentLine = 0;
 
-readable.on ('data', inputStdin => {
-    inputString += inputStdin;
+readable.on ('data', data => {
+    inputString += data;
 });
 
 readable.on ('end', _ => {
