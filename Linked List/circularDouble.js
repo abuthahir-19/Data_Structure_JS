@@ -44,32 +44,26 @@ class Node {
 class CircularDoubleList {
     constructor () {
         this.head = null;
+        this.tail = null;
     }
 
     insert (element) {
         var node = new Node (element);
-        if (this.head === null) this.head = node;
+        if (this.head === null) {
+            this.head = node;
+            this.tail = node;
+        }
         else {
             var current = this.head;
+            this.tail = node;
             current.prev = node;
             while (current.next !== null) {
                 current = current.next;
             }
             current.next = node;
             node.prev = current;
+            node.next = this.head;
         }
-    }
-
-    lastInsert (element) {
-        var node = new Node (element);
-        var current = this.head;
-        current.prev = node;
-        while (current.next != null) {
-            current = current.next;
-        }
-        current.next = node;
-        node.prev = current;
-        node.next = this.head;
     }
 
     printList () {
