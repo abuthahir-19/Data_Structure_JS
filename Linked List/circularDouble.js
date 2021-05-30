@@ -43,6 +43,12 @@ function main () {
     console.log (cDList.getElementAt (5));
     console.log ('String version of output of the list elements :');
     console.log (cDList.toString ());
+    console.log ('Index of the specified element (65):');
+    console.log (cDList.indexOf (65));
+    // console.log ('Deleting an specified element (60)');
+    // cDList.delete (60);
+    cDList.deleteHead ();
+    cDList.printList();
 }
 
 class Node {
@@ -124,29 +130,46 @@ class CircularDoubleList {
         return str;
     }
 
-    // indexOf (element) {
+    indexOf (element) {
+        let count = 0;
+        var curr = this.head;
+        while (curr.value != element) {
+            count += 1;
+            curr = curr.next;
+        }
+        return count;
+    }
 
-    // }
+    delete (element) {
+        var curr = this.head;
+        while (curr.value !== element) {
+            curr = curr.next;
+        }
+        var temp = curr.prev;
+        var next = curr.next;
+        temp.next = curr.next;
+        next.prev = temp;
+    }
 
-    // delete (element) {
+    deleteHead () {
+        var head = this.head;
+        this.head = head.next;
+        var next = head.next;
+        next.prev = head.prev;
+        this.tail.next = head.next;
+    }
 
-    // }
+    isEmpty () {
+        return this.head === null ? true : false;   
+    }
 
-    // deleteHead () {
+    getHeadElement () {
+        return this.head.value;
+    }
 
-    // }
-
-    // isEmpty () {
-        
-    // }
-
-    // getHeadElement () {
-
-    // }
-
-    // getTailElement () {
-
-    // }
+    getTailElement () {
+        return this.tail.value;
+    }
 
     printList () {
         var List = [];
