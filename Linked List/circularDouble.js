@@ -49,21 +49,58 @@ class CircularDoubleList {
 
     insert (element) {
         var node = new Node (element);
-        if (this.head === null) {
+        if (this.head === null && this.tail === null) {
             this.head = node;
             this.tail = node;
         }
         else {
-            var current = this.head;
+            node.prev = this.tail;
+            this.tail.next = node;
             this.tail = node;
-            current.prev = node;
-            while (current.next !== null) {
-                current = current.next;
-            }
-            current.next = node;
-            node.prev = current;
-            node.next = this.head;
         }
+        this.head.prev = this.tail;
+        this.tail.next = this.head;
+    }
+
+
+    removeAt (position) {
+
+    }
+
+    insert (position, element) {
+
+    }
+
+    getElementAt (position) {
+
+    }
+
+    toString () {
+
+    }
+
+    indexOf (element) {
+
+    }
+
+    delete (element) {
+
+    }
+
+    deleteHead () {
+
+    }
+
+    isEmpty () {
+        
+    }
+
+    getHeadElement () {
+
+    }
+
+    getTailElement () {
+
     }
 
     printList () {
