@@ -1,7 +1,7 @@
 const fs = require('fs');
 const process = require('process');
 
-var readable = fs.createReadStream ('foo.txt');
+var readable = fs.createReadStream (__dirname + '\\inputFile.txt');
 
 readable.resume();
 readable.setEncoding ('utf-8');

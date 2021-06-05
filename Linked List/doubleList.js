@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const readable = fs.createReadStream ('foo.txt');
+var readable = fs.createReadStream (__dirname + '\\inputFile.txt');
 
 let inputString = '';
 let currentLine = 0;
