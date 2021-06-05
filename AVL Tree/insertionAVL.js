@@ -27,5 +27,3 @@ function main () {
     const list = readLine();
     console.log (list);
 }
-
-// console.log ();
