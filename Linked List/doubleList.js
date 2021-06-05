@@ -57,7 +57,7 @@ class DoubleList {
         var node = new Node (element);
 
         if (this.head == null) {
-            this.head = node
+            this.head = node;
         }
         else {
             curr = this.head;
