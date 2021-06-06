@@ -1,7 +1,7 @@
 const fs = require('fs');
-const path = require('path');
 
 var readable = fs.createReadStream (__dirname + '\\avlinput.txt');
+
 readable.resume();
 readable.setEncoding ('utf-8');
 
@@ -24,8 +24,7 @@ function readLine () {
 }
 
 function main () {
-    const list = readLine();
-    console.log (list);
+    var list = readLine ().split(' ').map(Number);
 }
 
 class Node {
@@ -33,7 +32,7 @@ class Node {
         this.data = element;
         this.left = null;
         this.right = null;
-        this.balance = 0;
+        this.height = 1;
     }
 }
 
