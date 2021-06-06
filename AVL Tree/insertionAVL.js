@@ -27,3 +27,18 @@ function main () {
     const list = readLine();
     console.log (list);
 }
+
+class Node {
+    constructor (element) {
+        this.data = element;
+        this.left = null;
+        this.right = null;
+        this.balance = 0;
+    }
+}
+
+class AVL {
+    constructor () {
+        this.root = null;
+    }
+}
