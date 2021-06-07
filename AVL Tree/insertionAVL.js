@@ -86,24 +86,24 @@ class AVL {
     }
 
     insertNode (node, key) {
-        if (node == null) {
+        if (node === null) {
             return (new Node (key));
         }
 
         if (key < node.data) {
             node.left = this.insertNode (node.left, key);
-            return node;
         }
-
         else if (key > node.data) {
             node.right = this.insertNode (node.right, key);
-            return node;
         }
 
-        else {
-            node.height = 1 + Math.max (this.height (node.left) , this.height (node.right));
+        else{
+            return node;
+        }
+        node.height = 1 + Math.max (this.height (node.left), this.height (node.right));
 
             let balanceFactor = this.getBalanceFactor (node);
+
             if (balanceFactor > 1) {
                 if (key < node.left.data) {
                     return this.rightRotate (node);
@@ -124,7 +124,6 @@ class AVL {
                 }
             }
             return node;
-        }
     }
 
     inorder (root) {

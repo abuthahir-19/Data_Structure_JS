@@ -24,26 +24,20 @@ function readLine () {
 }
 
 function main () {
-    // var list = readLine ().split(' ').map(Number);
-    // var avl = new AVL ();
-    // var root = avl.getRootNode();
-    // for (const val of list) {
-    //     root = avl.insert (root, val);
-    // }
-    // console.log ('Elements of the AVL Tree :');
-    // avl.inorder (root);
-    // var d = +readLine();
-    // console.log ('Element that is going to be deleted is %d', d);
-    // avl.delete (root, d);
-    // console.log ('After deletion :');
-    // avl.inorder (root);
-    var tree = new AVL ();
-    var root = tree.getRootNode();
-    root = tree.insert (root, 10);
+    var list = readLine ().split(' ').map(Number);
+    var avl = new AVL ();
+    var root = avl.getRootNode();
+    for (const val of list) {
+        root = avl.insert (root, val);
+    }
+    console.log ('Elements of the AVL Tree :');
+    avl.inorder (root);
     console.log (root);
-    root = tree.insert (root, 20);
-    console.log (root);
-    root = tree.insert (root, 30);
+    var d = +readLine();
+    console.log ('Element that is going to be deleted is %d', d);
+    avl.delete (root, d);
+    console.log ('After deletion :');
+    avl.inorder (root);
     console.log (root);
 }
 
@@ -107,15 +101,15 @@ class AVL {
 
         if (key < node.data) {
             node.left = this.insert (node.left, key);
-            return node;
         }
         else if (key > node.data) {
             node.right = this.insert (node.right, key);
-            return node;
         }
 
         else{
-            node.height = 1 + Math.max (this.height (node.left), this.height (node.right));
+            return node;
+        }
+        node.height = 1 + Math.max (this.height (node.left), this.height (node.right));
 
             let balanceFactor = this.getBalanceFactor (node);
 
@@ -139,7 +133,6 @@ class AVL {
                 }
             }
             return node;
-        }
     }
 
     findMinNode (root) {
@@ -156,11 +149,9 @@ class AVL {
         }
         if (key < root.data) {
             root.left = this.delete (root.left, key);
-            return root;
         }
         else if (key > root.data) {
             root.right = this.delete (root.right, key);
-            return root;
         }
         else {
             if (root.left == null && root.right == null) {
@@ -179,32 +170,32 @@ class AVL {
             var min = this.findMinNode (root);
             root.data = min.data;
             root.right = this.delete (root.right, min.data);
-            
-            root.height = 1 + (Math.max (this.height (root.left), this.height (root.right)));
-
-            let balanceFactor = this.getBalanceFactor (root);
-            if (balanceFactor > 1) {
-                if (key < root.left.data) {
-                    return this.rightRotate (root);
-                }
-                else if (key > root.left.data) {
-                    root.left = this.leftRotate (root.left);
-                    return this.rightRotate (root);
-                }
-            }
-
-            if (balanceFactor < -1) {
-                if (key > root.right.data) {
-                    return this.leftRotate (root);
-                }
-
-                else if (key > root.right.data) {
-                    root.right = this.rightRotate (root.right);
-                    return this.leftRotate (root);
-                }
-            }
             return root;
         }
+        root.height = 1 + (Math.max (this.height (root.left), this.height (root.right)));
+
+        let balanceFactor = this.getBalanceFactor (root);
+        if (balanceFactor > 1) {
+            if (key < root.left.data) {
+                return this.rightRotate (root);
+            }
+            else if (key > root.left.data) {
+                root.left = this.leftRotate (root.left);
+                return this.rightRotate (root);
+            }
+        }
+
+        if (balanceFactor < -1) {
+            if (key > root.right.data) {
+                return this.leftRotate (root);
+            }
+
+            else if (key > root.right.data) {
+                root.right = this.rightRotate (root.right);
+                return this.leftRotate (root);
+            }
+        }
+        return root;
     }
 
     inorder (root) {
