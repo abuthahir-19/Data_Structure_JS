@@ -125,8 +125,6 @@ class AVL {
             }
             return node;
         }
-
-        
     }
 
     inorder (root) {
