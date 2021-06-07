@@ -30,7 +30,7 @@ function main () {
     for (const val of list) {
         root = avl.insertNode (root, val);
     }
-    var root = avl.getRootNode ();
+    console.log ('Elements of the avl tree :');
     avl.inorder (root);
 }
 
@@ -100,7 +100,33 @@ class AVL {
             return node;
         }
 
-        else return node;
+        else {
+            node.height = 1 + Math.max (this.height (node.left) , this.height (node.right));
+
+            let balanceFactor = this.getBalanceFactor (node);
+            if (balanceFactor > 1) {
+                if (key < node.left.data) {
+                    return this.rightRotate (node);
+                }
+                else if (key > node.left.data) {
+                    node.left = this.leftRotate (node.left);
+                    return this.rightRotate (node);
+                }
+            }
+
+            if (balanceFactor < -1) {
+                if (key > node.right.data) {
+                    return this.leftRotate (node);
+                }
+                else if (key < node.right.data) {
+                    node.right = this.rightRotate (node.right);
+                    return this.leftRotate (node);
+                }
+            }
+            return node;
+        }
+
+        
     }
 
     inorder (root) {
