@@ -39,6 +39,7 @@ class Node {
         this.data = element;
         this.left = null;
         this.right = null;
+        this.height = 1
     }
 }
 
@@ -50,7 +51,40 @@ class AVL {
     getRootNode () {
         return this.root;
     }
+
+    height (node) {
+        if (node == null) return 0;
+        else return node.height;
+    }
+
+    leftRotate (x) {
+        let y = x.right;
+        let t2 = y.left;
+        x.right = t2;
+        y.left = x;
+        
+        x.height = Math.max (this.height (x.left), this.height (x.right)) + 1;
+        y.height = Math.max (this.height (y.left), this.height (y.right)) + 1;
+
+        return y;
+    }
+
+    rightRotate (y) {
+        let x = y.left;
+        let t2 = x.right;
+        x.right = y;
+        y.left = t2;
+
+        y.height = Math.max (this.height (y.left), this.height (y.right)) + 1;
+        x.height = Math.max (this.height (x.left), this.height (x.right)) + 1;
+        return x;
+    }
     
+    getBalanceFactor (node) {
+        if (node == null) return 0;
+        return (this.height (node.left) - this.height(node.right));
+    }
+
     insertNode (node, key) {
         if (node == null) {
             return (new Node (key));

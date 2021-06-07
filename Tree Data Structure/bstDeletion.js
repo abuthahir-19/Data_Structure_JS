@@ -29,10 +29,9 @@ function readLine () {
 function main () {
     var list = readLine().split(' ').map(Number);
     var bst = new BST ();
+    var root = bst.getRootNode ();
     for (const val of list) {
-        var root = bst.getRootNode ();
-        var newNode = new Node (val);
-        bst.insert (root, newNode);
+        root = bst.insertNode (root, val);
     }
     console.log ('Elements of the tree :');
     bst.inorder (root);
@@ -60,23 +59,20 @@ class BST {
         return this.root;
     }
 
-    insert (rootNode, newNode) {
-        if (rootNode === null) {
-            this.root = newNode;
+    insertNode (root, key) {
+        if (root == null) {
+            return (new Node (key));
         }
 
-        else if (newNode.data < rootNode.data) {
-            if (rootNode.left === null) {
-                rootNode.left = newNode;
-            }
-            else this.insert (rootNode.left, newNode);
+        if (key < root.data) {
+            root.left = this.insertNode (root.left, key);
+            return root;
         }
-        else if (newNode.data > rootNode.data) {
-            if (rootNode.right === null) {
-                rootNode.right = newNode;
-            }
-            else this.insert (rootNode.right, newNode);
+        else if (key > root.data) {
+            root.right = this.insertNode (root.right, key);
+            return root;
         }
+        else return root;
     }
 
     findMinNode (root) {
