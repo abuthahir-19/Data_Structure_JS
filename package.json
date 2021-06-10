@@ -1,0 +1,25 @@
+{
+  "name": "data-structures",
+  "version": "1.0.0",
+  "description": "Data Structures implementation using Javascript",
+  "main": "index.js",
+  "dependencies": {
+    "all": "^0.0.0",
+    "express": "^4.17.1",
+    "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abuthahir-19/Data_Structure_JS.git"
+  },
+  "author": "Syed",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/abuthahir-19/Data_Structure_JS/issues"
+  },
+  "homepage": "https://github.com/abuthahir-19/Data_Structure_JS#readme"
+}
