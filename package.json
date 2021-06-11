@@ -21,5 +21,6 @@
   "bugs": {
     "url": "https://github.com/abuthahir-19/Data_Structure_JS/issues"
   },
-  "homepage": "https://github.com/abuthahir-19/Data_Structure_JS#readme"
+  "homepage": "https://github.com/abuthahir-19/Data_Structure_JS#readme",
+  "type": "module"
 }

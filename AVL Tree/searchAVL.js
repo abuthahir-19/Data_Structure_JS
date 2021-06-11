@@ -1,6 +1,7 @@
-const fs = require('fs');
+import {createReadStream} from 'fs';
+import {AVL} from './avltree.js';
 
-var readable = fs.createReadStream (__dirname + '\\avlinput.txt');
+var readable = createReadStream ('AVL Tree/avlinput.txt');
 
 readable.resume();
 readable.setEncoding ('utf-8');
@@ -25,5 +26,11 @@ function readLine () {
 
 function main () {
     var list = readLine().split(' ').map(Number);
-    console.log (...list);
+    var avl = new AVL();
+    var root = avl.getRootNode ();
+    for (const val of list) {
+        root = avl.insert (root, val);
+    }
+    console.log ('Elements of the tree :');
+    avl.inorder (root);
 }
