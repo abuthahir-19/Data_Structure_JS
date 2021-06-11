@@ -35,3 +35,21 @@ function main () {
     console.log ('Elements of the avl tree :');
     avl.inorder (root);
 }
+
+/**
+Input: 
+50 30 60 90 20 80 65 55 25
+
+
+Output :
+Elements of the avl tree :
+20
+25
+30
+50
+55
+60
+65
+80
+90
+**/

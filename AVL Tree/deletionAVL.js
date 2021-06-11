@@ -40,3 +40,32 @@ function main () {
     console.log ('After deletion :');
     avl.inorder (root);
 }
+
+/**
+Input: 
+50 30 60 90 20 80 65 55 25
+60
+
+
+Output :
+Elements of the avl tree :
+20
+25
+30
+50
+55
+60
+65
+80
+90
+Element that is going to be deleted is 60
+After deletion :
+20
+25
+30
+50
+55
+65
+80
+90
+**/

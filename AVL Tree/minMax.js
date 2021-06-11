@@ -39,3 +39,26 @@ function main () {
     console.log ('Maximum element in the AVL Tree :');
     console.log (avl.max ());
 }
+
+/**
+Input: 
+50 30 60 90 20 80 65 55 25
+60
+
+
+Output :
+Elements of the avl tree :
+20
+25
+30
+50
+55
+60
+65
+80
+90
+Node with Minimum element in AVL Tree :
+20
+Maximum element in the AVL Tree :
+90
+**/

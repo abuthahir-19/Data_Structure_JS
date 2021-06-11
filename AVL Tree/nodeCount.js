@@ -37,3 +37,25 @@ function main () {
     console.log ('The number of nodes in the AVL tree :');
     console.log (avl.count ());
 }
+
+/**
+Input: 
+50 30 60 90 20 80 65 55 25
+60
+
+
+Output :
+Elements of the avl tree :
+20
+25
+30
+50
+55
+60
+65
+80
+90
+The number of nodes in the AVL tree :
+9
+
+**/

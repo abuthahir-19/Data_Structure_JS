@@ -34,8 +34,49 @@ function main () {
     root = avl.root
     console.log ('Elements of the tree :');
     avl.inorder (root);
-    console.log ('Element to be searched is %d', 80);
-    if (avl.find (80) == 'true') console.log ('Element found');
+    var findValue = +readLine ();
+    console.log ('Element to be searched is %d', findValue);
+    if (avl.find (findValue) == 'true') console.log ('Element found');
     else console.log ('Element not found');
-    console.log (avl.count());
 }
+
+/**
+Input: 
+50 30 60 90 20 80 65 55 25
+80
+
+
+Output :
+Elements of the tree :
+20
+25
+30
+50
+55
+60
+65
+80
+90
+Element to be searched is 80
+Element found
+
+
+Input: 
+50 30 60 90 20 80 65 55 25
+57
+
+
+Output :
+Elements of the tree :
+20
+25
+30
+50
+55
+60
+65
+80
+90
+Element to be searched is 57
+Element not found
+**/
