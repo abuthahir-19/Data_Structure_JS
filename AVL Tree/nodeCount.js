@@ -34,4 +34,6 @@ function main () {
     root = (avl.root)
     console.log ('Elements of the avl tree :');
     avl.inorder (root);
+    console.log ('The number of nodes in the AVL tree :');
+    console.log (avl.count ());
 }

@@ -29,8 +29,13 @@ function main () {
     var avl = new AVL();
     var root = avl.getRootNode ();
     for (const val of list) {
-        root = avl.insert (root, val);
+        avl.insert (val);
     }
+    root = avl.root
     console.log ('Elements of the tree :');
     avl.inorder (root);
+    console.log ('Element to be searched is %d', 80);
+    if (avl.find (80) == 'true') console.log ('Element found');
+    else console.log ('Element not found');
+    console.log (avl.count());
 }

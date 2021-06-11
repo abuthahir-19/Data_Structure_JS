@@ -1,8 +1,8 @@
 //JavaScript Code to implement Deletion in Binary Search Tree
 
-const fs = require('fs');
+import { createReadStream } from "fs";
 
-var readable = fs.createReadStream (__dirname + '\\treeInput.txt');
+var readable = createReadStream ('Tree Data Structure/treeInput.txt');
 
 readable.resume();
 readable.setEncoding ('utf-8');

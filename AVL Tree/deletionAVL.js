@@ -26,16 +26,17 @@ function readLine () {
 
 function main () {
     var list = readLine ().split(' ').map(Number);
-    var avl = new AVL ();
-    var root = avl.getRootNode();
+    var avl = new AVL();
+    var root = avl.getRootNode ();
     for (const val of list) {
-        root = avl.insert (root, val);
+        avl.insert (val);
     }
-    console.log ('Elements of the AVL Tree :');
+    root = (avl.root)
+    console.log ('Elements of the avl tree :');
     avl.inorder (root);
     var d = +readLine();
     console.log ('Element that is going to be deleted is %d', d);
-    avl.delete (root, d);
+    avl.delete (d);
     console.log ('After deletion :');
     avl.inorder (root);
 }

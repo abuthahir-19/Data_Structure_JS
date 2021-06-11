@@ -34,4 +34,8 @@ function main () {
     root = (avl.root)
     console.log ('Elements of the avl tree :');
     avl.inorder (root);
+    console.log ('Node with Minimum element in AVL Tree :');
+    console.log (avl.min());
+    console.log ('Maximum element in the AVL Tree :');
+    console.log (avl.max ());
 }
