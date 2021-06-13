@@ -1,15 +1,14 @@
 //JavaScript Program to Find out the number of non-leaf nodes or internal nodes (a node is said to be a leaf node if it has no childrens).
+import { createReadStream } from "fs";
+import { BST } from "./bst.js";
 
-const fs = require('fs');
-
-var readable = fs.createReadStream (__dirname + '\\treeInput.txt');
+var readable = createReadStream ('Tree Data Structure/treeInput.txt');
 
 readable.resume();
 readable.setEncoding ('utf-8');
 
 var inputString = '';
 var currentLine = 0;
-var internal = 0;
 
 readable.on ('data', data => {
     inputString += data;
@@ -78,13 +77,7 @@ class BST {
         }
     }
 
-    internalNodes (root) {
-        if (root !== null) {
-            if (root.left !== null || root.right !== null) internal +=1;
-            if (root.left !== null) this.internalNodes (root.left);
-            if (root.right !== null) this.internalNodes (root.right);
-        }
-    }
+    
 
     inorder (rootNode) {
         if (rootNode !== null) {

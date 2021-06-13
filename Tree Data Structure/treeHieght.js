@@ -1,8 +1,8 @@
 //JavaScript Program to Find out the Height of the Binary Search Tree.
+import { createReadStream } from "fs";
+import { BST } from "./bst.js";
 
-const fs = require('fs');
-
-var readable = fs.createReadStream (__dirname + '\\treeInput.txt');
+var readable = createReadStream ('Tree Data Structure/treeInput.txt');
 
 readable.resume();
 readable.setEncoding ('utf-8');
@@ -30,75 +30,13 @@ function main () {
     var list = readLine().split(' ').map(Number);
     var bst = new BST ();
     for (const val of list) {
-        var root = bst.getRootNode ();
-        var newNode = new Node (val);
-        bst.insert (root, newNode);
+       bst.insert (val);
     }
+    var root = bst.root;
     console.log ('Elements of the tree :');
     bst.inorder (root);
     console.log ('The Maximum depth or height of the Tree is :');
-    console.log (bst.treeHieght (root));
-}
-
-class Node {
-    constructor (element) {
-        this.data = element;
-        this.left = null;
-        this.right = null;
-    }
-}
-
-class BST {
-    constructor () {
-        this.root = null;
-    }
-
-    getRootNode () {
-        return this.root;
-    }
-
-    insert (rootNode, newNode) {
-        if (rootNode === null) {
-            this.root = newNode;
-        }
-
-        else if (newNode.data < rootNode.data) {
-            if (rootNode.left === null) {
-                rootNode.left = newNode;
-            }
-            else this.insert (rootNode.left, newNode);
-        }
-        else if (newNode.data > rootNode.data) {
-            if (rootNode.right === null) {
-                rootNode.right = newNode;
-            }
-            else this.insert (rootNode.right, newNode);
-        }
-    }
-
-    treeHieght (root) {
-        if (root == null) return -1;
-        if (root.left === null && root.right === null) {
-            return 0;
-        }
-        if (root.left === null) {
-            return this.treeHieght (root.right) + 1;
-        }
-        if (root.right === null) {
-            return this.treeHieght (root.left) + 1;
-        }
-        const lHeight = this.treeHieght (root.left);
-        const rHeight = this.treeHieght (root.right);
-        return Math.max(lHeight, rHeight) + 1;
-    }
-
-    inorder (rootNode) {
-        if (rootNode !== null) {
-            this.inorder (rootNode.left);
-            console.log (rootNode.data);
-            this.inorder (rootNode.right);
-        }
-    }
+    console.log (bst.height (root));
 }
 
 /**

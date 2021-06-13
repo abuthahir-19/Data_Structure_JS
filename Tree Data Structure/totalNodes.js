@@ -1,15 +1,14 @@
 //JavaScript Program to Count the total number of Nodes in the Binary Search Tree
+import { createReadStream } from "fs";
+import { BST } from "./bst.js";
 
-const fs = require('fs');
-
-var readable = fs.createReadStream (__dirname + '\\treeInput.txt');
+var readable = createReadStream ('Tree Data Structure/treeInput.txt');
 
 readable.resume();
 readable.setEncoding ('utf-8');
 
 var inputString = '';
 var currentLine = 0;
-var nodeCount = 1; //Since initializing one because the root node also to be calculated
 
 readable.on ('data', data => {
     inputString += data;
@@ -31,70 +30,14 @@ function main () {
     var list = readLine().split(' ').map(Number);
     var bst = new BST ();
     for (const val of list) {
-        var root = bst.getRootNode ();
-        var newNode = new Node (val);
-        bst.insert (root, newNode);
+        bst.insert (val);
     }
+    var root = bst.root;
+
     console.log ('Elements of the tree :');
     bst.inorder (root);
-    bst.totalNodes (root);
     console.log ('The total number of nodes in the tree is :');
-    console.log (nodeCount);
-}
-
-class Node {
-    constructor (element) {
-        this.data = element;
-        this.left = null;
-        this.right = null;
-    }
-}
-
-class BST {
-    constructor () {
-        this.root = null;
-    }
-
-    getRootNode () {
-        return this.root;
-    }
-
-    insert (rootNode, newNode) {
-        if (rootNode === null) {
-            this.root = newNode;
-        }
-
-        else if (newNode.data < rootNode.data) {
-            if (rootNode.left === null) {
-                rootNode.left = newNode;
-            }
-            else this.insert (rootNode.left, newNode);
-        }
-        else if (newNode.data > rootNode.data) {
-            if (rootNode.right === null) {
-                rootNode.right = newNode;
-            }
-            else this.insert (rootNode.right, newNode);
-        }
-    }
-
-    totalNodes (root) {
-        if (root == null) return root;
-        else {
-            if (root.left != null) nodeCount += 1;
-            if (root.right != null) nodeCount += 1; 
-        }
-        this.totalNodes (root.left);
-        this.totalNodes (root.right);
-    }
-
-    inorder (rootNode) {
-        if (rootNode !== null) {
-            this.inorder (rootNode.left);
-            console.log (rootNode.data);
-            this.inorder (rootNode.right);
-        }
-    }
+    console.log (bst.total());
 }
 
 /**

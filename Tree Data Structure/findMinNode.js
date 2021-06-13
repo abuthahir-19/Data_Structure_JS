@@ -1,8 +1,8 @@
 //JavaScript Code to implement Finding Minimun mode in the Binary Search Tree
+import { createReadStream } from "fs";
+import { BST } from "./bst.js";
 
-const fs = require('fs');
-
-var readable = fs.createReadStream (__dirname + '\\treeInput.txt');
+var readable = createReadStream ('Tree Data Structure/treeInput.txt');
 
 readable.resume();
 readable.setEncoding ('utf-8');
@@ -30,68 +30,15 @@ function main () {
     var list = readLine().split(' ').map(Number);
     var bst = new BST ();
     for (const val of list) {
-        var root = bst.getRootNode ();
-        var newNode = new Node (val);
-        bst.insert (root, newNode);
+        bst.insert (val);
     }
+    var root = bst.root;
+
     console.log ('Elements of the tree :');
     bst.inorder (root);
-    var minNode = bst.findMinNode (root);
+    var minNode = bst.min ();
     console.log ('Minimum Node in the Tree :');
     console.log (minNode.data);
-}
-
-class Node {
-    constructor (element) {
-        this.data = element;
-        this.left = null;
-        this.right = null;
-    }
-}
-
-class BST {
-    constructor () {
-        this.root = null;
-    }
-
-    getRootNode () {
-        return this.root;
-    }
-
-    insert (rootNode, newNode) {
-        if (rootNode === null) {
-            this.root = newNode;
-        }
-
-        else if (newNode.data < rootNode.data) {
-            if (rootNode.left === null) {
-                rootNode.left = newNode;
-            }
-            else this.insert (rootNode.left, newNode);
-        }
-        else if (newNode.data > rootNode.data) {
-            if (rootNode.right === null) {
-                rootNode.right = newNode;
-            }
-            else this.insert (rootNode.right, newNode);
-        }
-    }
-
-    findMinNode (root) {
-        var current = root.left;
-        while (current && current.left !== null) {
-            current = current.left;
-        }
-        return current;
-    }
-
-    inorder (rootNode) {
-        if (rootNode !== null) {
-            this.inorder (rootNode.left);
-            console.log (rootNode.data);
-            this.inorder (rootNode.right);
-        }
-    }
 }
 
 /**

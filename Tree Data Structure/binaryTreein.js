@@ -1,8 +1,9 @@
 //JavaScript Code to implement insertion in Binary Search Tree
 
-const fs = require('fs');
+import { createReadStream } from "fs";
+import { BST } from "./bst.js";
 
-var readable = fs.createReadStream (__dirname + '\\treeInput.txt');
+var readable = createReadStream ('Tree Data Structure/treeInput.txt');
 
 readable.resume();
 readable.setEncoding ('utf-8');
@@ -31,54 +32,11 @@ function main () {
     var bst = new BST ();
     var root = bst.getRootNode ();
     for (const val of list) {
-        root = bst.insertNode (root, val);
+        bst.insert (val);
     }
+    root = bst.getRootNode ();
     console.log ('Elements of the tree :');
     bst.inorder (root);
-}
-
-class Node {
-    constructor (element) {
-        this.data = element;
-        this.left = null;
-        this.right = null;
-    }
-}
-
-class BST {
-    constructor () {
-        this.root = null;
-    }
-
-    getRootNode () {
-        return this.root;
-    }
-
-    insertNode (node, key) {
-        if (node == null) {
-            return (new Node (key));
-        }
-
-        if (key < node.data) {
-            node.left = this.insertNode (node.left, key);
-            return node;
-        }
-
-        else if (key > node.data) {
-            node.right = this.insertNode (node.right, key);
-            return node;
-        }
-
-        else return node;
-    }
-
-    inorder (rootNode) {
-        if (rootNode !== null) {
-            this.inorder (rootNode.left);
-            console.log (rootNode.data);
-            this.inorder (rootNode.right);
-        }
-    }
 }
 
 /***

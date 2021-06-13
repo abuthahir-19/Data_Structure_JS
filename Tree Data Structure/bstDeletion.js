@@ -1,7 +1,7 @@
 //JavaScript Code to implement Deletion in Binary Search Tree
 
 import { createReadStream } from "fs";
-
+import { BST } from "./bst.js";
 var readable = createReadStream ('Tree Data Structure/treeInput.txt');
 
 readable.resume();
@@ -31,99 +31,21 @@ function main () {
     var bst = new BST ();
     var root = bst.getRootNode ();
     for (const val of list) {
-        root = bst.insertNode (root, val);
+        bst.insert (val);
     }
+    root = bst.getRootNode ();
     console.log ('Elements of the tree :');
     bst.inorder (root);
+    console.log ('Count of the nodes before deletion :');
+    console.log (bst.count());
     var d = +readLine();
     console.log ('The element to be deleted is %d', d);
-    bst.deleteNode (root, d);
+    bst.delete (d);
     console.log ('After deletion the tree elements are :');
     bst.inorder (root);
+    console.log ('Count of the nodes after deletion :');
+    console.log (bst.count());
 }
-
-class Node {
-    constructor (element) {
-        this.data = element;
-        this.left = null;
-        this.right = null;
-    }
-}
-
-class BST {
-    constructor () {
-        this.root = null;
-    }
-
-    getRootNode () {
-        return this.root;
-    }
-
-    insertNode (root, key) {
-        if (root == null) {
-            return (new Node (key));
-        }
-
-        if (key < root.data) {
-            root.left = this.insertNode (root.left, key);
-            return root;
-        }
-        else if (key > root.data) {
-            root.right = this.insertNode (root.right, key);
-            return root;
-        }
-        else return root;
-    }
-
-    findMinNode (root) {
-        var current = root.right;
-        while (current && current.left !== null) {
-            current = current.left;
-        }
-        return current;
-    }
-
-    deleteNode (rootNode, element) {
-        if (rootNode === null) {
-            return 'Tree Empty';
-        }
-        else if (element < rootNode.data) {
-            rootNode.left = this.deleteNode (rootNode.left, element);
-            return rootNode;
-        }
-        else if (element > rootNode.data) {
-            rootNode.right = this.deleteNode (rootNode.right, element);
-            return rootNode;
-        }
-        else {
-            if (rootNode.left === null && rootNode.right === null) {
-                rootNode = null;
-                return rootNode;
-            }
-            else if (rootNode.left === null) {
-                rootNode = rootNode.right;
-                return rootNode;
-            }
-            else if (rootNode.right === null) {
-                rootNode = rootNode.left;
-                return rootNode;
-            }
-            var min = this.findMinNode (rootNode);
-            rootNode.data = min.data;
-            rootNode.right = this.deleteNode (rootNode.right, min.data);
-            return rootNode;
-        }
-    }
-
-    inorder (rootNode) {
-        if (rootNode !== null) {
-            this.inorder (rootNode.left);
-            console.log (rootNode.data);
-            this.inorder (rootNode.right);
-        }
-    }
-}
-
 
 /**
 
