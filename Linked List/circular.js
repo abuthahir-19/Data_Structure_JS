@@ -1,6 +1,8 @@
-const fs = require('fs');
+//JavaScript program to implement circular linked list and its different method like add, remove, removefront, removeend, etc.,
+import { createReadStream } from "fs";
 
 var readable = fs.createReadStream (__dirname + '\\inputFile.txt');
+
 readable.resume ();
 readable.setEncoding ('utf-8');
 
