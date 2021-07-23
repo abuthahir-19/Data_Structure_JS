@@ -61,4 +61,7 @@ function main () {
 
     console.log ('Converting a list to String :');
     console.log (circularList.toString().split(',').join(' '));
+
+    console.log ('Size of the list :');
+    console.log (circularList.listSize());
 }

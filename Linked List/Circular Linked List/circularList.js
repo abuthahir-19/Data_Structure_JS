@@ -125,8 +125,8 @@ class CircularList {
         return this.head == null;
     }
 
-    size () {
-        return this.size;
+    listSize () {
+        return (this.size);
     }
 
     getHead () {
