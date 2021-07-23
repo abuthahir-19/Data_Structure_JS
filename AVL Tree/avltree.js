@@ -7,7 +7,7 @@ class Node {
     }
 }
 
-export class AVL {
+class AVL {
     constructor () {
         this.root = null;
         this._count = 0;
@@ -218,3 +218,5 @@ export class AVL {
         }
     }
 }
+
+export {AVL};

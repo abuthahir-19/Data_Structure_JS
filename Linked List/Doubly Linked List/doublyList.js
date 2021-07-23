@@ -6,7 +6,7 @@ class Node {
     }
 }
 
-export class DoublyList {
+class DoublyList {
     constructor () {
         this.head = null;
         this.size = 0;
@@ -155,3 +155,5 @@ export class DoublyList {
         console.log (...List);
     }
 }
+
+export {DoublyList, Node};
