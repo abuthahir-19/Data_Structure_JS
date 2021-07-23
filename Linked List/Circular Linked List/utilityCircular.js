@@ -1,4 +1,4 @@
-import { createReadStream, read } from "fs";
+import { createReadStream } from "fs";
 import { CircularList } from "./circularList.js";
 
 var readable = createReadStream ('Linked List/Circular Linked List/tests/utility.txt');
