@@ -25,14 +25,14 @@ export class BST {
         return node.height;
     }
 
-    insertNode (root, key) {
+    #insertNode (root, key) {
         if (root == null) return (new Node (key));
 
         if (key < root.data) {
-            root.left = this.insertNode (root.left, key);
+            root.left = this.#insertNode (root.left, key);
         }
         else if (key > root.data) {
-            root.right = this.insertNode (root.right, key);
+            root.right = this.#insertNode (root.right, key);
         }
         else {
             return root;   
@@ -43,7 +43,7 @@ export class BST {
     }
 
     insert (data) {
-        this.root = this.insertNode (this.root, data);
+        this.root = this.#insertNode (this.root, data);
         this._count += 1;
     }
 
@@ -94,21 +94,21 @@ export class BST {
         return this._internal;
     }
 
-    searchNode (root, key) {
+    #searchNode (root, key) {
         if (root === null) {
             return 0;
         }
         else if (key < root.data) {
-            return this.searchNode (root.left, key);
+            return this.#searchNode (root.left, key);
         }
         else if (key > root.data) {
-            return this.searchNode (root.right, key);
+            return this.#searchNode (root.right, key);
         }
         else if (key == root.data) return 1;
     }
 
     find (key) {
-        if (this.searchNode (this.root, key)) return 'true';
+        if (this.#searchNode (this.root, key)) return 'true';
         else return 'false';
     }
 
@@ -126,14 +126,14 @@ export class BST {
         return this._count;
     }
 
-    deleteNode (root, key) {
+    #deleteNode (root, key) {
         if (root === null) return 'Data cannot be deleted from an empty tree';
 
         if (key < root.data) {
-            root.left = this.deleteNode (root.left, key);
+            root.left = this.#deleteNode (root.left, key);
         }
         else if (key > root.data) {
-            root.right = this.deleteNode (root.right, key);
+            root.right = this.#deleteNode (root.right, key);
         }
         else {
             if (root.left == null && root.right == null) {
@@ -150,14 +150,14 @@ export class BST {
             }
             var min = this.findMinNode (root.right);
             root.data = min.data;
-            root.right = this.deleteNode (root.right, min.data);
+            root.right = this.#deleteNode (root.right, min.data);
             return root;
         }
         root.height = 1 + Math.max (this.height (root.left), this.height (root.right));
     }   
 
     delete (data) {
-        this.root = this.deleteNode (this.root, data);
+        this.root = this.#deleteNode (this.root, data);
         this._count -= 1;
     }
 
