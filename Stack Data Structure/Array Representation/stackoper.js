@@ -1,7 +1,7 @@
 import { createReadStream } from "fs";
 import { Stack } from "./stackArr.js";
 
-var readable = createReadStream ('./input.txt');
+var readable = createReadStream ('Stack Data Structure/Array Representation/input.txt');
 readable.resume();
 readable.setEncoding ('utf-8');
 
@@ -32,7 +32,8 @@ function main () {
     }
     console.log (stack.peek())
     console.log ('Elements of the Stack :');
-    for (let i = 0; i < stack.size(); i++) {
+    var l = stack.size();
+    for (let i = 0; i < l; i++) {
         console.log (stack.pop());
     }
 }
