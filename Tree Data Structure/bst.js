@@ -127,33 +127,36 @@ export class BST {
     }
 
     #deleteNode (root, key) {
-        if (root === null) return 'Data cannot be deleted from an empty tree';
+        if (root === null) throw new Error ('Element not found');
 
         if (key < root.data) {
             root.left = this.#deleteNode (root.left, key);
+            return root;
         }
         else if (key > root.data) {
             root.right = this.#deleteNode (root.right, key);
+            return root;
         }
         else {
             if (root.left == null && root.right == null) {
                 root = null;
                 return root;
             }
-            else if (root.left == null && root.right != null) {
+
+            else if (root.left == null) {
                 root = root.right;
                 return root;
             }
-            else if (root.left != null && root.right == null) {
+            else if (root.right == null) {
                 root = root.left;
                 return root;
             }
             var min = this.findMinNode (root.right);
             root.data = min.data;
             root.right = this.#deleteNode (root.right, min.data);
-            return root;
         }
         root.height = 1 + Math.max (this.height (root.left), this.height (root.right));
+        return root;
     }   
 
     delete (data) {

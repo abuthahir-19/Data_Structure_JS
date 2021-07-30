@@ -38,11 +38,15 @@ function main () {
     bst.inorder (root);
     console.log ('Count of the nodes before deletion :');
     console.log (bst.count());
-    var d = +readLine();
-    console.log ('The element to be deleted is %d', d);
-    bst.delete (d);
-    console.log ('After deletion the tree elements are :');
-    bst.inorder (root);
+    try {
+        var d = +readLine();
+        console.log ('The element to be deleted is %d', d);
+        bst.delete (d);
+        console.log ('After deletion the tree elements are :');
+        bst.inorder (root);
+    }catch (er) {
+        console.log (er.name + ' : ' + er.message);
+    }
     console.log ('Count of the nodes after deletion :');
     console.log (bst.count());
 }
