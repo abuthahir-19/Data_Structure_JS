@@ -30,7 +30,7 @@ function main () {
     for (const val of list) {
         stack.push (val);
     }
-    console.log (stack.peek())
+    console.log ('Peek element : ' + stack.peek())
     console.log ('Elements of the Stack :');
     var l = stack.size();
     for (let i = 0; i < l; i++) {
