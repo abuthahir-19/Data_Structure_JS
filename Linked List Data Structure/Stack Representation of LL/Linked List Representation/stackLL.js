@@ -35,5 +35,4 @@ function main () {
     while (stackLL.size() != 0) {
         console.log (stackLL.pop());
     }
-
 }
