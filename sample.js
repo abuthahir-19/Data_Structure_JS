@@ -1,5 +1,5 @@
 import { createReadStream } from "fs";
-import { StackArr } from "./Linked List Data Structure/Stack Representation of LL/stackLL.js";
+import { StackArr } from './Linked List Data Structure/Stack Data Structure/Array Representation/stackArray.js'
 var readable = createReadStream ('./input.txt');
 readable.resume();
 readable.setEncoding ('utf-8');
