@@ -30,7 +30,8 @@ function main () {
         stack.push (val);
     }
     console.log ('Elements of the stack :');
-    for (let i = 0; i < n; i++) {
+
+    while (stack.size()) {
         console.log (stack.pop());
     }
 }

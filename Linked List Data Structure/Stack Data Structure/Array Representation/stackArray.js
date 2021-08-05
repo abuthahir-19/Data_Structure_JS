@@ -6,8 +6,8 @@ class StackArr {
     }
 
     push (key) {
-        if (this._top <= this._capacity) {
-            this._stack[++this._top] = key;
+        if (++this._top < this._capacity) {
+            this._stack.push (key);
         }
         else {
             console.log('Stack has reached its maximum capacity. Remove an element to add one more element you want');
@@ -19,18 +19,16 @@ class StackArr {
             return 'Stack Underflow';
         }
         else {
-            let lastVal = this._stack[this._top];
-            this._top -= 1;
-            return lastVal;
+            return this._stack.pop();
         }
     }
 
     peek () {
-        return this._stack[this._top];
+        return this._stack[this._stack.length-1];
     }
 
     size () {
-        return this._top;
+        return this._stack.length;
     }
 }
 
