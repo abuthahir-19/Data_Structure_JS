@@ -7,7 +7,7 @@ class Node {
     }
 }
 
-export class BST {
+class BST {
     constructor () {
         this.root = null;
         this._count = 0;
@@ -176,3 +176,5 @@ export class BST {
         }
     }
 }
+
+export { BST };
