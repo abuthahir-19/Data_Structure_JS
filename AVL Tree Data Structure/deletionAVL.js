@@ -1,7 +1,7 @@
 import {createReadStream} from 'fs';
 import {AVL} from './avltree.js';
 
-var readable = createReadStream ('AVL Tree/avlinput.txt');
+var readable = createReadStream ('AVL Tree Data Structure/avlinput.txt');
 
 readable.resume();
 readable.setEncoding ('utf-8');

@@ -1,5 +1,5 @@
 import { createReadStream } from "fs";
-import { StackArr } from './Linked List Data Structure/Stack Data Structure/Array Representation/stackArray.js'
+
 var readable = createReadStream ('./input.txt');
 readable.resume();
 readable.setEncoding ('utf-8');
@@ -23,15 +23,10 @@ function readLine () {
 }
 
 function main () {
-    var n = +readLine();
-    var list = readLine ().split (' ').map(Number);
-    var stack = new StackArr (n)
-    for (const val of list) {
-        stack.push (val);
+    var obj = {};
+    var vertex = 1;
+    if (!obj[vertex]) {
+        obj[vertex] = [];
     }
-    console.log ('Elements of the stack :');
-
-    while (stack.size()) {
-        console.log (stack.pop());
-    }
+    console.log(obj);
 }
